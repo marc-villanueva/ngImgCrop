@@ -158,6 +158,18 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', funct
       return temp_canvas.toDataURL();
     };
 
+    this.getAreaCoords=function() {
+      var coords = {};
+
+      if (image!=null) {
+        coords.x = (theArea.getX()-theArea.getSize()/2)*(image.width/ctx.canvas.width);
+        coords.y = (theArea.getY()-theArea.getSize()/2)*(image.width/ctx.canvas.width);
+        coords.size = theArea.getSize()*(image.width/ctx.canvas.width);
+      }
+
+      return coords;
+    }
+
     this.setNewImageSource=function(imageSource) {
       image=null;
       resetCropHost();
